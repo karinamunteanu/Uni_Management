@@ -1,0 +1,61 @@
+﻿@page
+@model Uni_Management.Pages.Students.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Faculty
+            </th>
+            <th>
+                University
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => $"{student.FirstName} {student.LastName}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Course.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Department.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Faculty.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.University.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@student.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@student.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@student.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
